@@ -60,6 +60,15 @@ public class UserFacadeREST extends AbstractFacade<User> {
     public User find(@PathParam("id") Long id) {
         return super.find(id);
     }
+    
+    @GET
+    @Path("email/{email}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<User> findByEmail(@PathParam("email") String email) {
+        return em.createNamedQuery("User.findByEmail", User.class)
+                .setParameter("email", email)
+                .getResultList();
+    }
 
     @GET
     @Override
