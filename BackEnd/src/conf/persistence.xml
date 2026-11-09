@@ -20,7 +20,7 @@
 <!-- JTA platform -->
 <!-- property name="hibernate.transaction.jta.platform" 
                 value="org.hibernate.engine.transaction.jta.platform.internal.GlassFishJtaPlatform"/ -->
-<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+<property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
 <!--  DB Catalog and Action  -->
 <property name="hibernate.default_catalog" value="signdb"/>
 <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
