@@ -34,13 +34,23 @@ public class UserFacadeREST extends AbstractFacade<User> {
         super(User.class);
     }
 
+    //CREACIÓN DE USUARIO
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(User entity) {
+        // A falta de AUTOINCREMENT para el ID en la base de datos, se maneja desde aquí
+        // añadiendo +1 al maxId ya existente.
+        if (entity.getId() == null) {
+            Long maxId = em.createQuery(
+                    "SELECT COALESCE(MAX(u.id), 0) FROM User u", Long.class)
+                    .getSingleResult();
+            entity.setId(maxId + 1);
+        }
         super.create(entity);
     }
 
+    //CREACIÓN DE USUARIO
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
